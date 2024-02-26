@@ -5,7 +5,7 @@ applications:
   memory: 896M
   routes:
     - route: j17superapp-be.cfapps.eu10-004.hana.ondemand.com
-  path: target/*-exec.jar
+  path: srv/target/java17superApp-exec.jar
   buildpacks:
     - java_buildpack
   env:
