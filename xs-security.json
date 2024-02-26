@@ -13,11 +13,11 @@
   },
   "scopes": [
     {
-      "name": "$XSAPPNAME.DB",
+      "name": "$XSAPPNAME.HDIAccess",
       "description": "DB Permissions for HANA HDI."
     },
     {
-      "name": "$XSAPPNAME.Administrator",
+      "name": "$XSAPPNAME.TokenAdmin",
       "description": "Admin Permissions."
     },
     {
@@ -27,17 +27,17 @@
   ],
   "role-templates": [
     {
-      "name": "HANA-DB",
+      "name": "HANA-HDIAccess",
       "description": "HANA DB Data Access",
       "scope-references": [
-        "$XSAPPNAME.DB"
+        "$XSAPPNAME.HDIAccess"
       ]
     },
     {
       "name": "Admininstrator",
       "description": "Administrator for All Access",
       "scope-references": [
-        "$XSAPPNAME.Administrator"
+        "$XSAPPNAME.TokenAdmin"
       ]
     },
     {
@@ -53,14 +53,14 @@
       "name": "XSUAA-DB",
       "description": "HANA DB Data Access (Read and Write)",
       "role-template-references": [
-        "$XSAPPNAME.Viewer"
+        "$XSAPPNAME.HANA-HDIAccess"
       ]
     },
     {
       "name": "XSUAA-Administrator",
       "description": "Administrator for All Access",
       "role-template-references": [
-        "$XSAPPNAME.Administrator"
+        "$XSAPPNAME.TokenAdmin"
       ]
     },
     {
