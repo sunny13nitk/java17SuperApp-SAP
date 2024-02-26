@@ -57,10 +57,10 @@
       ]
     },
     {
-      "name": "XSUAA-Admin",
+      "name": "XSUAA-Administrator",
       "description": "Administrator for All Access",
       "role-template-references": [
-        "$XSAPPNAME.Admin"
+        "$XSAPPNAME.Administrator"
       ]
     },
     {
