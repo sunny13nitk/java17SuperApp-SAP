@@ -1,0 +1,76 @@
+{
+  "xsappname": "java17superapp",
+  "tenant-mode": "dedicated",
+  "oauth2-configuration": {
+    "credential-types": [
+      "instance-secret",
+      "binding-secret"
+    ],
+    "redirect-uris": [
+      "https://*.cfapps.eu10-004.hana.ondemand.com/login/callback",
+      "https://*.cfapps.eu10-004.hana.ondemand.com/**"
+    ]
+  },
+  "scopes": [
+    {
+      "name": "$XSAPPNAME.DB",
+      "description": "DB Permissions for HANA HDI."
+    },
+    {
+      "name": "$XSAPPNAME.Administrator",
+      "description": "Admin Permissions."
+    },
+    {
+      "name": "$XSAPPNAME.DesAccess",
+      "description": "Destination Access Permissions."
+    }
+  ],
+  "role-templates": [
+    {
+      "name": "HANA-DB",
+      "description": "HANA DB Data Access",
+      "scope-references": [
+        "$XSAPPNAME.DB"
+      ]
+    },
+    {
+      "name": "Admininstrator",
+      "description": "Administrator for All Access",
+      "scope-references": [
+        "$XSAPPNAME.Administrator"
+      ]
+    },
+    {
+      "name": "DesAccess",
+      "description": "Destination Access Permissions.",
+      "scope-references": [
+        "$XSAPPNAME.DesAccess"
+      ]
+    }
+  ],
+  "role-collections": [
+    {
+      "name": "XSUAA-DB",
+      "description": "HANA DB Data Access (Read and Write)",
+      "role-template-references": [
+        "$XSAPPNAME.Viewer"
+      ]
+    },
+    {
+      "name": "XSUAA-Admin",
+      "description": "Administrator for All Access",
+      "role-template-references": [
+        "$XSAPPNAME.Admin"
+      ]
+    },
+    {
+      "name": "XSUAA-DestinationAccess",
+      "description": "Destination Access Permissions.",
+      "role-template-references": [
+        "$XSAPPNAME.DesAccess"
+      ]
+    }
+  ],
+  "attributes": [],
+  "authorities-inheritance": false
+}

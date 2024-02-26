@@ -1,0 +1,34 @@
+applications:
+# The sample application.
+- name: java17SuperApp
+  instances: 1 
+  memory: 896M
+  routes:
+    - route: j17superapp-be.cfapps.eu10-004.hana.ondemand.com
+  path: srv/target/*.jar
+  buildpacks:
+    - java_buildpack
+  env:
+    JBP_CONFIG_OPEN_JDK_JRE: '{jre: { version: 17.0.+ }}'
+    IAS_XSUAA_XCHANGE_ENABLED: true
+  services:    
+    - j17xsuaa-authn
+# Application Router as web server
+- name: app-java17SuperApp
+  path: app
+  buildpacks:
+    - nodejs_buildpack
+  memory: 128M
+  routes:
+    - route: j17superapp-app.cfapps.eu10-004.hana.ondemand.com
+  services:
+    - j17xsuaa-authn
+  env:
+    destinations: >
+      [
+        {
+          "name":"token-destination",
+          "url":"https://j17superapp-be.cfapps.eu10-004.hana.ondemand.com",
+          "forwardAuthToken": true
+        }  
+      ]    
