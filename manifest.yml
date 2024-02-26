@@ -13,7 +13,7 @@ applications:
     IAS_XSUAA_XCHANGE_ENABLED: true
   services:    
     - j17xsuaa-authn
-    - j17xsuaa-hana
+    - j17hdi-hana
 # Application Router as web server
 - name: app-java17SuperApp
   path: app
