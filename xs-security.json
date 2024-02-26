@@ -34,7 +34,7 @@
       ]
     },
     {
-      "name": "Admininstrator",
+      "name": "TokenAdmin",
       "description": "Administrator for All Access",
       "scope-references": [
         "$XSAPPNAME.TokenAdmin"
@@ -50,21 +50,21 @@
   ],
   "role-collections": [
     {
-      "name": "XSUAA-DB",
+      "name": "SuperApp-DB",
       "description": "HANA DB Data Access (Read and Write)",
       "role-template-references": [
         "$XSAPPNAME.HANA-HDIAccess"
       ]
     },
     {
-      "name": "XSUAA-Administrator",
+      "name": "SuperApp-TokenAdmin",
       "description": "Administrator for All Access",
       "role-template-references": [
         "$XSAPPNAME.TokenAdmin"
       ]
     },
     {
-      "name": "XSUAA-DestinationAccess",
+      "name": "SuperApp-DestinationAccess",
       "description": "Destination Access Permissions.",
       "role-template-references": [
         "$XSAPPNAME.DesAccess"
