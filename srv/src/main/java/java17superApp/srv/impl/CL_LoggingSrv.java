@@ -10,11 +10,14 @@ import org.springframework.stereotype.Service;
 
 import com.sap.cds.Result;
 import com.sap.cds.ql.Insert;
+import com.sap.cds.ql.Select;
 import com.sap.cds.ql.cqn.CqnInsert;
+import com.sap.cds.ql.cqn.CqnSelect;
 import com.sap.cds.services.persistence.PersistenceService;
 import com.sap.cds.services.request.UserInfo;
 
 import cds.gen.db.esmlogs.Esmappmsglog;
+import cds.gen.db.esmlogs.Esmappmsglog_;
 import java17superApp.srv.intf.IF_LoggingSrv;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -67,8 +70,19 @@ public class CL_LoggingSrv implements IF_LoggingSrv
     @Override
     public List<Esmappmsglog> readLogs()
     {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'readLogs'");
+        List<Esmappmsglog> logs = null;
+
+        if (ps != null)
+        {
+            CqnSelect qLogsByObjectId = Select.from(Esmappmsglog_.class);
+            if (qLogsByObjectId != null)
+            {
+                logs = ps.run(qLogsByObjectId).listOf(Esmappmsglog.class);
+            }
+
+        }
+
+        return logs;
     }
 
 }

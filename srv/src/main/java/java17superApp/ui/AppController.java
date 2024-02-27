@@ -96,4 +96,17 @@ public class AppController
 
         return "addLog";
     }
+
+    @GetMapping("/readLog")
+    @PreAuthorize("hasAuthority('HDIAccess')")
+    public String readLog(Model model)
+    {
+
+        if (logSrv != null)
+        {
+            model.addAttribute("logs", logSrv.readLogs());
+        }
+        return "readLogs";
+    }
+
 }

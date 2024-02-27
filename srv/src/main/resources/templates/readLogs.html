@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>My App</title>
+    <!-- Metro 4 -->
+    <link rel="stylesheet" href="https://cdn.metroui.org.ua/v4.3.2/css/metro-all.min.css">
+    <title>Java 17 Super App</title>
+</head>
+
+<body>
+
+    <div style="margin-top: 80px">
+
+        <div class="card" style="width: 800px;">
+            <div class="card-header colspan-10">
+                <div class="row">
+                    <div class="colspan-10">
+                        <div th:if="${logs != null}" class="remark success " style="padding-top: 10px; margin: 2px">
+                            <h4>Logs found in HDI Container...</h4>
+                        </div>
+
+                        <div th:if="${logs == null}" class="remark alert " style="padding-top: 10px; margin: 2px">
+                            <h4>Logs not Bound in HDI Container...</h4>
+                        </div>
+                    </div>
+                    <div class="colspan-1" style="padding: 20px;">
+                        <a href="#" class="button secondary outline cycle" style="margin-right: 20px;" data-role="hint"
+                            th:href="@{/app/}" role="button" data-hint-position="bottom" data-cls-hint="fg-black"
+                            data-hint-text="Home">
+                            <span class="mif-home" style="margin-left: 0px"></span>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+
+
+        <!-- Logs Table - Start -->
+        <div class="row" th:if="${logs != null}">
+            <div th:if="${logs.size() > 0}">
+                <h5 style="margin: 50px;">
+                    All Logs for Selected Duration
+                </h5>
+
+                <div class="colspan-11">
+                    <table class="table compact table-border row-hover" id="t-inspector" data-role="table"
+                        data-show-search="true" data-show-rows-steps="false" data-table-search-title="Filter Logs:"
+                        data-search-min-length="1" data-search-threshold="300" data-rows="20"
+                        data-search-fields="username,status,msgtype,objectid,message" data-horizontal-scroll="true"
+                        data-info-wrapper=".info-wrapper" data-thousand-separator=","
+                        data-pagination-wrapper=".pagination-wrapper" data-pagination-prev-title="Previous">
+                        <thead>
+                            <tr>
+                                <th data-name="msgtype" class="sortable-column sort-desc pl-6">Message Type</th>
+
+                                <th data-name="status" data-cls-column="text-left">Status</th>
+
+                                <th data-name="username" data-cls-column="text-left">User Name</th>
+
+                                <th data-name="message" data-cls-column="text-left">Message</th>
+
+                                <th data-name="timestamp" class="sortable-column sort-desc pl-6">
+                                    Timestamp
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="log : ${logs}">
+
+                                <td th:text="${log.msgtype}"></td>
+                                <td th:text="${log.status}"></td>
+                                <td th:text="${log.username}"></td>
+                                <td><textarea th:text="${log.message}" data-auto-size="true"
+                                        style="min-height: 50px; width: 600px; font-size: .8em" disabled></textarea>
+                                </td>
+                                <td th:text="${#temporals.format(log.timestamp, 'yyyy-MM-dd HH:mm:ss')}"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <p class="h5 text-center info-wrapper"></p>
+                    <div class="d-flex flex-justify-center pagination-wrapper"></div>
+                </div>
+
+            </div>
+
+        </div>
+        <!-- Logs Table - Ends -->
+
+
+
+
+    </div>
+
+
+
+    <!-- Metro 4 -->
+    <script src="https://cdn.metroui.org.ua/v4.3.2/js/metro.min.js"></script>
+</body>
+
+</html>
