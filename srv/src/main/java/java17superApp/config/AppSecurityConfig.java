@@ -47,8 +47,8 @@ public class AppSecurityConfig
                                 .requestMatchers("/api/*").authenticated()
                                 .requestMatchers("/app/*").authenticated()   
                                 .requestMatchers("/app/token").hasAuthority("TokenAdmin") 
-                                .requestMatchers("/api/addLog").hasAuthority("HDIAccess")
-                                .requestMatchers("/api/dbRead").hasAuthority("HDIAccess")
+                                .requestMatchers("/app/addLog").hasAuthority("HDIAccess")
+                                .requestMatchers("/app/readLogs").hasAuthority("HDIAccess")
                                 .requestMatchers("/*").authenticated()
                                 .anyRequest().denyAll())
                 .oauth2ResourceServer(oauth2 -> oauth2
