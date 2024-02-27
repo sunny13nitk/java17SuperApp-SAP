@@ -43,13 +43,13 @@
 
 
         <!-- Logs Table - Start -->
-        <div class="row" th:if="${logs != null}">
+        <div th:if="${logs != null}">
             <div th:if="${logs.size() > 0}">
                 <h5 style="margin: 50px;">
                     All Logs for Selected Duration
                 </h5>
 
-                <div class="colspan-11">
+                <div class="colspan-12">
                     <table class="table compact table-border row-hover" id="t-inspector" data-role="table"
                         data-show-search="true" data-show-rows-steps="false" data-table-search-title="Filter Logs:"
                         data-search-min-length="1" data-search-threshold="300" data-rows="20"
