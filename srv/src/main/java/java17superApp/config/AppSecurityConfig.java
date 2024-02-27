@@ -47,7 +47,7 @@ public class AppSecurityConfig
                                 .requestMatchers("/api/*").authenticated()
                                 .requestMatchers("/app/*").authenticated()   
                                 .requestMatchers("/app/token").hasAuthority("TokenAdmin") 
-                                .requestMatchers("/api/dbCreate").hasAuthority("HDIAccess")
+                                .requestMatchers("/api/addLog").hasAuthority("HDIAccess")
                                 .requestMatchers("/api/dbRead").hasAuthority("HDIAccess")
                                 .requestMatchers("/*").authenticated()
                                 .anyRequest().denyAll())

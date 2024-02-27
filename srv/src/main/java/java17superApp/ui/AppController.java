@@ -4,6 +4,7 @@ import static com.sap.cloud.security.config.Service.XSUAA;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -12,18 +13,23 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.sap.cds.Result;
 import com.sap.cloud.security.token.AccessToken;
 import com.sap.cloud.security.token.Token;
 import com.sap.cloud.security.token.TokenClaims;
 
+import cds.gen.db.esmlogs.Esmappmsglog;
+import java17superApp.srv.intf.IF_LoggingSrv;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 @Controller
 @RequestMapping("/app")
 @Slf4j
+@RequiredArgsConstructor
 public class AppController
 {
-    // To get In UserInfo Autowired Bean
+    private final IF_LoggingSrv logSrv;
 
     @GetMapping("/")
     public String showHome()
@@ -61,5 +67,33 @@ public class AppController
         model.addAttribute("validToken", validToken);
 
         return "tokenDetails";
+    }
+
+    @GetMapping("/addLog")
+    @PreAuthorize("hasAuthority('HDIAccess')")
+    public String addLog(Model model)
+    {
+        log.info("Creating Log from UI ....");
+        if (logSrv != null)
+        {
+            log.info("Logging Service Bound ......");
+
+            Result result = logSrv.addLog();
+            if (result != null)
+            {
+                if (result.list().size() > 0)
+                {
+                    log.info("# Log Successfully Inserted - " + result.rowCount());
+                    Optional<Esmappmsglog> logO = result.first(Esmappmsglog.class);
+                    if (logO.isPresent())
+                    {
+                        model.addAttribute("log", logO.get());
+                    }
+
+                }
+            }
+        }
+
+        return "addLog";
     }
 }
