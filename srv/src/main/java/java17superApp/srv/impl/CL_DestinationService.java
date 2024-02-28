@@ -61,6 +61,7 @@ public class CL_DestinationService implements IF_DestinationService
 
                 for (String prop : dest.getPropertyNames())
                 {
+                    log.info(dest.get(prop).get().toString());
 
                     if (prop.equals(prop_URL))
                     {
