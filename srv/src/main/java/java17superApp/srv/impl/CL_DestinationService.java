@@ -76,7 +76,8 @@ public class CL_DestinationService implements IF_DestinationService
         }
         catch (DestinationAccessException e)
         {
-            log.error("Error Accessing Destination : " + e.getLocalizedMessage());
+            log.error("Error Accessing Destination : " + e.getLocalizedMessage() + "Trace: "
+                    + e.getStackTrace().toString());
             throw new Exception("Not able to connect to the Destination : " + e.getLocalizedMessage());
 
         }
