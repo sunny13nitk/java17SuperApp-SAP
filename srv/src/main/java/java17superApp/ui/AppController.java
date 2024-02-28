@@ -130,7 +130,7 @@ public class AppController
                 model.addAttribute("error", e.getLocalizedMessage());
             }
         }
-        return "tokenDetails";
+        return "desDetails";
     }
 
 }
