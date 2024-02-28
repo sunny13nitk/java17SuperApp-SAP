@@ -25,7 +25,7 @@ public class CL_DestinationService implements IF_DestinationService
     private TY_DestinationProps desProps;
 
     private static final String prop_URL = "URL";
-    private static final String prop_Token = "authTokens";
+    private static final String prop_Token = "cloudsdk.authTokens";
     private static final String cons_value = ", value=";
     private static final String cons_bracketClose = "\\)";
 
