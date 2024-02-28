@@ -14,6 +14,7 @@ applications:
   services:    
     - j17xsuaa-authn
     - j17hdi-hana
+    - srv-cloud-destService 
 # Application Router as web server
 - name: app-java17SuperApp
   path: app
