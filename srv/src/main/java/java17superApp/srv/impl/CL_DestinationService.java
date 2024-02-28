@@ -50,8 +50,6 @@ public class CL_DestinationService implements IF_DestinationService
     {
         try
         {
-
-            log.info("Scanning for Destination : " + destinationName);
             Destination dest = DestinationAccessor.getDestination(destinationName);
             if (dest != null)
             {
@@ -85,7 +83,7 @@ public class CL_DestinationService implements IF_DestinationService
             e.printStackTrace(pw);
             String stackTrace = sw.toString();
             log.error("Error Accessing Destination : " + e.getLocalizedMessage());
-            log.error(stackTrace);
+            log.error("Stack trace Details: " + stackTrace);
             throw new Exception("Not able to connect to the Destination : " + e.getLocalizedMessage());
 
         }
