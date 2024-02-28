@@ -49,6 +49,7 @@ public class AppSecurityConfig
                                 .requestMatchers("/app/token").hasAuthority("TokenAdmin") 
                                 .requestMatchers("/app/addLog").hasAuthority("HDIAccess")
                                 .requestMatchers("/app/readLogs").hasAuthority("HDIAccess")
+                                .requestMatchers("/app/desCheck").hasAuthority("DesAccess")
                                 .requestMatchers("/*").authenticated()
                                 .anyRequest().denyAll())
                 .oauth2ResourceServer(oauth2 -> oauth2

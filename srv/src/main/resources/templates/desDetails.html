@@ -18,8 +18,11 @@
             <div class="card-header colspan-10">
                 <div class="row">
                     <div class="colspan-10">
-                        <div th:if="${log !=null}" class="remark success " style="padding-top: 10px; margin: 2px">
-                            <h4>New Log Details</h4>
+                        <div th:if="${desProps !=null}" class="remark success " style="padding-top: 10px; margin: 2px">
+                            <h4>Destination Bound Successfully</h4>
+                        </div>
+                        <div th:if="${desProps == null}" class="remark alert " style="padding-top: 10px; margin: 2px">
+                            <h4>Destination could not be Bound!</h4>
                         </div>
                     </div>
                     <div class="colspan-1" style="padding: 20px;">
@@ -34,27 +37,31 @@
             </div>
 
 
-            <div class="row" style="padding-top: -10px; padding-left: 10px; padding-right: 10px; padding-bottom: 10px">
+            <div th:if="${desProps !=null}" class="row"
+                style="padding-top: -10px; padding-left: 10px; padding-right: 10px; padding-bottom: 10px">
 
                 <div class="colspan-11 " style="margin-left: 10px">
                     <h6 style="color: #4465a1">
-                        UserName <span style="color: #B1365B" th:text="${log.getUsername()}"></span>
+                        Destination Name <span style="color: #B1365B" th:text="${desProps.baseUrl}"></span>
                     </h6>
                 </div>
 
                 <div class="colspan-11 " style="margin-left: 10px">
                     <h6 style="color: #4465a1">
-                        ID <span style="color: #B1365B" th:text="${log.getId()}"></span>
-                    </h6>
-                </div>
-
-                <div class="colspan-11 " style="margin-left: 10px">
-                    <h6 style="color: #4465a1">
-                        Message <span style="color: #B1365B" th:text="${log.getMessage()}"></span>
+                        Token <span style="color: #B1365B" th:text="${desProps.authToken}"></span>
                     </h6>
                 </div>
 
             </div>
+
+
+            <div th:if="${error !=null}"" class=" row"
+                style="padding-top: -10px; padding-left: 10px; padding-right: 10px; padding-bottom: 10px">
+
+                <label style="color: #6d89c2; font-weight: bolder;" th:text="${error}"></label>
+
+            </div>
+
 
 
         </div>

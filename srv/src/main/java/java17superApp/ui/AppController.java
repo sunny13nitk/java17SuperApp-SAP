@@ -19,6 +19,7 @@ import com.sap.cloud.security.token.Token;
 import com.sap.cloud.security.token.TokenClaims;
 
 import cds.gen.db.esmlogs.Esmappmsglog;
+import java17superApp.srv.intf.IF_DestinationService;
 import java17superApp.srv.intf.IF_LoggingSrv;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -30,6 +31,10 @@ import lombok.extern.slf4j.Slf4j;
 public class AppController
 {
     private final IF_LoggingSrv logSrv;
+
+    private final IF_DestinationService desSrv;
+
+    private final String desName = "BTP_SVC_INT";
 
     @GetMapping("/")
     public String showHome()
@@ -107,6 +112,25 @@ public class AppController
             model.addAttribute("logs", logSrv.readLogs());
         }
         return "readLogs";
+    }
+
+    @GetMapping("/desCheck")
+    @PreAuthorize("hasAuthority('DesAccess')")
+    public String checkDEstination(Model model)
+    {
+
+        if (desSrv != null)
+        {
+            try
+            {
+                model.addAttribute("desProps", desSrv.getDestinationDetails4User(desName));
+            }
+            catch (Exception e)
+            {
+                model.addAttribute("error", e.getLocalizedMessage());
+            }
+        }
+        return "tokenDetails";
     }
 
 }
