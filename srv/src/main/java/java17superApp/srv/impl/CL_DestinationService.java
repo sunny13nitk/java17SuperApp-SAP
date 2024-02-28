@@ -1,5 +1,8 @@
 package java17superApp.srv.impl;
 
+import java.io.PrintWriter;
+import java.io.StringWriter;
+import java.util.Arrays;
 import java.util.Locale;
 
 import org.springframework.stereotype.Service;
@@ -76,8 +79,13 @@ public class CL_DestinationService implements IF_DestinationService
         }
         catch (DestinationAccessException e)
         {
-            log.error("Error Accessing Destination : " + e.getLocalizedMessage() + "Trace: "
-                    + e.getStackTrace().toString());
+
+            StringWriter sw = new StringWriter();
+            PrintWriter pw = new PrintWriter(sw);
+            e.printStackTrace(pw);
+            String stackTrace = sw.toString();
+            log.error("Error Accessing Destination : " + e.getLocalizedMessage());
+            log.error(stackTrace);
             throw new Exception("Not able to connect to the Destination : " + e.getLocalizedMessage());
 
         }
