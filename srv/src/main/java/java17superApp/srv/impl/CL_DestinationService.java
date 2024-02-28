@@ -32,8 +32,10 @@ public class CL_DestinationService implements IF_DestinationService
 
         if (StringUtils.hasText(DestinationName))
         {
+            log.info("Scanning for Destination : " + DestinationName);
             if (desProps == null)
             {
+                log.info("Destination Not bound. Invoking Destination Service..");
                 getDestinationDetails(DestinationName);
             }
         }
