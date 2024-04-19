@@ -16,12 +16,7 @@
       "authenticationType": "xsuaa",
       "cacheControl": "no-cache, no-store, must-revalidate"
     },
-    {
-      "source": "^/authorize",
-      "target": "/authorize",
-      "authenticationType": "none",
-      "csrfProtection": false
-    },
+    
     {
       "source": "^/login(.*)",
       "target": "/login$1",
