@@ -16,13 +16,6 @@
       "authenticationType": "xsuaa",
       "cacheControl": "no-cache, no-store, must-revalidate"
     },
-    {
-      "source": "^/authorize",
-      "target": "/authorize",
-      "destination": "token-destination",
-      "authenticationType": "none"
-
-    },
     
     {
       "source": "^/login(.*)",

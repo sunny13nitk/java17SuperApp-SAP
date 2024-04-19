@@ -28,7 +28,6 @@ import com.sap.cloud.security.spring.token.authentication.AuthenticationToken;
 import com.sap.cloud.security.token.TokenClaims;
 
 @Configuration
-@Order(1)
 @EnableWebSecurity()
 @EnableMethodSecurity(securedEnabled = true, jsr250Enabled = true)
 @PropertySource(factory = IdentityServicesPropertySourceFactory.class, ignoreResourceNotFound = true, value =
@@ -46,7 +45,6 @@ public class AppSecurityConfig
                .authorizeHttpRequests(authz ->
                            authz
                                 .requestMatchers("/login/**").permitAll()
-                                .requestMatchers("/authorize/*").permitAll()
                                 .requestMatchers("/api/*").authenticated()
                                 .requestMatchers("/app/*").authenticated()   
                                 .requestMatchers("/app/token").hasAuthority("TokenAdmin") 
@@ -55,7 +53,7 @@ public class AppSecurityConfig
                                 .requestMatchers("/app/desCheck").hasAuthority("DesAccess")
                                 .requestMatchers("/*").authenticated()
                                 .anyRequest().denyAll())
-                .csrf(AbstractHttpConfigurer::disable)                                
+ 
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .oauth2ResourceServer(oauth2 -> oauth2
                         .jwt(jwt -> jwt
