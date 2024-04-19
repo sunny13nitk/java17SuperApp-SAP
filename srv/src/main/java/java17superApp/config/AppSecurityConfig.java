@@ -43,9 +43,7 @@ public class AppSecurityConfig
     {
         // @formatter:off
         http
-                .sessionManagement(session -> session
-                        .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-                .authorizeHttpRequests(authz ->
+               .authorizeHttpRequests(authz ->
                            authz
                                 .requestMatchers("/login/**").permitAll()
                                 .requestMatchers("/authorize/*").permitAll()
