@@ -20,7 +20,8 @@
       "source": "^/authorize",
       "target": "/authorize",
       "destination": "token-destination",
-      "authenticationType": "none"
+      "authenticationType": "none",
+      "csrfProtection": false
     },
     {
       "source": "^/login(.*)",
