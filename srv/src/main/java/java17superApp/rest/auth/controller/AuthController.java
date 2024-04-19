@@ -18,10 +18,25 @@ import lombok.extern.slf4j.Slf4j;
 public class AuthController
 {
     @GetMapping("/authorize")
-    public ResponseEntity<TY_BearerToken> authorize(String destination)
+    public ResponseEntity<TY_BearerToken> authorize()
     {
+        final String destination = "REST_API_AUTH_CODE";
+        final String destinationBearer = "REST_API_BEARER";
 
         ResponseEntity<TY_BearerToken> bt = null;
+        TY_DesDetails_OAuth2CC desDetails = getBearerTokenCode(destination);
+        if (desDetails != null)
+        {
+            log.info(desDetails.toString());
+        }
+
+        return bt;
+
+    }
+
+    private TY_DesDetails_OAuth2CC getBearerTokenCode(String destination)
+    {
+        TY_DesDetails_OAuth2CC desDetails = null;
         if (StringUtils.hasText(destination))
         {
             Destination dest = DestinationAccessor.getDestination(destination);
@@ -31,17 +46,17 @@ public class AuthController
                 {
                     log.info(prop);
                 }
-                
+
                 if (dest.get(CL_DestinationConstants.CF_AUTHENTICATION).isDefined())
                 {
                     switch (dest.get(CL_DestinationConstants.CF_AUTHENTICATION).get().toString())
                     {
                     case CL_DestinationConstants.CF_OAUTH2_CLIENT_CREDENTIALS_TYPE:
                     {
-                        TY_DesDetails_OAuth2CC dD = new TY_DesDetails_OAuth2CC();
+                        desDetails = new TY_DesDetails_OAuth2CC();
                         if (dest.get(CL_DestinationConstants.CF_CLIENTID).isDefined())
                         {
-                            dD.setClientId(dest.get(CL_DestinationConstants.CF_CLIENTID).get().toString());
+                            desDetails.setClientId(dest.get(CL_DestinationConstants.CF_CLIENTID).get().toString());
                         }
                     }
 
@@ -56,7 +71,7 @@ public class AuthController
             }
         }
 
-        return bt;
-
+        return desDetails;
     }
+
 }
