@@ -57,7 +57,7 @@ public class AppSecurityConfig
                                 .requestMatchers("/app/desCheck").hasAuthority("DesAccess")
                                 .requestMatchers("/*").authenticated()
                                 .anyRequest().denyAll())
-                .csrf(AbstractHttpConfigurer::disable)                                
+                // .csrf(AbstractHttpConfigurer::disable)                                
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .oauth2ResourceServer(oauth2 -> oauth2
                         .jwt(jwt -> jwt

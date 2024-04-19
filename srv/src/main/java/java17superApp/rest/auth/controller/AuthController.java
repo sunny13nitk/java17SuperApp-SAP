@@ -36,6 +36,7 @@ public class AuthController
 
     }
 
+
     private TY_DesDetails_OAuth2CC getBearerTokenCode(String destination)
     {
         TY_DesDetails_OAuth2CC desDetails = null;
@@ -75,5 +76,46 @@ public class AuthController
 
         return desDetails;
     }
+
+
+    // private TY_DesDetails_OAuth2CC getBearerTokenCode(String destination)
+    // {
+    //     TY_DesDetails_OAuth2CC desDetails = null;
+    //     if (StringUtils.hasText(destination))
+    //     {
+    //         Destination dest = DestinationAccessor.getDestination(destination);
+    //         if (dest != null)
+    //         {
+    //             for (String prop : dest.getPropertyNames())
+    //             {
+    //                 log.info(prop);
+    //             }
+
+    //             if (dest.get(CL_DestinationConstants.CF_AUTHENTICATION).isDefined())
+    //             {
+    //                 switch (dest.get(CL_DestinationConstants.CF_AUTHENTICATION).get().toString())
+    //                 {
+    //                 case CL_DestinationConstants.CF_OAUTH2_CLIENT_CREDENTIALS_TYPE:
+    //                 {
+    //                     desDetails = new TY_DesDetails_OAuth2CC();
+    //                     if (dest.get(CL_DestinationConstants.CF_CLIENTID).isDefined())
+    //                     {
+    //                         desDetails.setClientId(dest.get(CL_DestinationConstants.CF_CLIENTID).get().toString());
+    //                     }
+    //                 }
+
+    //                     break;
+
+    //                 default:
+    //                     break;
+    //                 }
+
+    //             }
+
+    //         }
+    //     }
+
+    //     return desDetails;
+    // }
 
 }
