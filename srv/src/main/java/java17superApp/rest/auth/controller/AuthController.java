@@ -3,6 +3,7 @@ package java17superApp.rest.auth.controller;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.sap.cloud.sdk.cloudplatform.connectivity.Destination;
@@ -15,9 +16,10 @@ import lombok.extern.slf4j.Slf4j;
 
 @RestController
 @Slf4j
+@RequestMapping("/authorize")
 public class AuthController
 {
-    @GetMapping("/authorize")
+    @GetMapping("/")
     public ResponseEntity<TY_BearerToken> authorize()
     {
         final String destination = "REST_API_AUTH_CODE";
