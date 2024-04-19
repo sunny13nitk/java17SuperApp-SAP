@@ -44,6 +44,7 @@ public class AppSecurityConfig
                 .authorizeHttpRequests(authz ->
                            authz
                                 .requestMatchers("/login/**").permitAll()
+                                .requestMatchers("/authorize").permitAll()
                                 .requestMatchers("/api/*").authenticated()
                                 .requestMatchers("/app/*").authenticated()   
                                 .requestMatchers("/app/token").hasAuthority("TokenAdmin") 
