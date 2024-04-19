@@ -17,6 +17,13 @@
       "cacheControl": "no-cache, no-store, must-revalidate"
     },
     {
+      "source": "^/authorize",
+      "target": "/authorize",
+      "destination": "token-destination",
+      "authenticationType": "none",
+      "cacheControl": "no-cache, no-store, must-revalidate"
+    },
+    {
       "source": "^/login(.*)",
       "target": "/login$1",
       "destination": "token-destination",
